@@ -2,7 +2,7 @@
 
 
 ## Installation
-Clone the repo to your local pc using git:
+Clone the repo to your local machine using git:
 ```bash
 git clone https://github.com/juavazquez/servicio3_api_dds.git
 ```
@@ -17,4 +17,4 @@ Or you can also run the application from your IDE.
 
 
 ## Documentation
-With the application running visit the following endpoint "localhost:8080/doc".
+Once the application is running, visit the following endpoint "localhost:8080/doc".
