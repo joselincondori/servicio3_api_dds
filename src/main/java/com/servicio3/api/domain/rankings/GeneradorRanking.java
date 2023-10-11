@@ -15,9 +15,6 @@ import java.util.*;
 @Setter
 @NoArgsConstructor
 public class GeneradorRanking {
-    @Value("#{T(Float).parseFloat('${ranking.cnf}')}")
-    private Float CNF;
-
     /*
         suma total tiempo resolucion incidentes + incidentes no resueltos * CNF
      */
@@ -31,13 +28,11 @@ public class GeneradorRanking {
 
         List<EntradaRanking> entradasRankings = new ArrayList<>();
 
-        List<Incidente> incidentesSemanales = filtrarIncidentesSemanales(incidentes);
-
         for(Entidad entidad : entidades) {
-            List<Incidente> incidentesEntidad = filtrarIncidentesPertenecientesAEntidad(incidentesSemanales, entidad);
+            List<Incidente> incidentesEntidad = filtrarIncidentesPertenecientesAEntidad(incidentes, entidad);
             int cantidadAfectadosIncidentes = getAfectadosPorIncidentes(incidentesEntidad, comunidades);
-            Float puntaje = (obtenerSumaTiempoResolucion(incidentesEntidad) + cantIncidentesNoResultos(incidentesEntidad) * this.CNF) * cantidadAfectadosIncidentes;
-            EntradaRanking entrada = new EntradaRanking(puntaje, entidad.getNombre());
+            Float puntaje = (obtenerSumaTiempoResolucion(incidentesEntidad) + cantIncidentesNoResultos(incidentesEntidad) * rankingDto.getCnf()) * cantidadAfectadosIncidentes;
+            EntradaRanking entrada = new EntradaRanking(puntaje, entidad.getNombre(), entidad.getId());
             entradasRankings.add(entrada);
         }
 
@@ -70,13 +65,6 @@ public class GeneradorRanking {
     public List<Incidente> filtrarIncidentesPertenecientesAEntidad(List<Incidente> incidentes, Entidad entidad) {
         return incidentes.stream()
                 .filter(i -> entidad.getIdEstablecimientos().contains(i.getIdEstablecimiento()))
-                .toList();
-    }
-
-    // filtra incidentes que fueron abiertos hace no mas de una semana
-    public List<Incidente> filtrarIncidentesSemanales(List<Incidente> incidentes) {
-        return incidentes.stream()
-                .filter(incidente -> incidente.getFechaHoraApertura().isAfter(LocalDateTime.now().minusDays(7)))
                 .toList();
     }
 

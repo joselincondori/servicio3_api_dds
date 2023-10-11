@@ -8,6 +8,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 public class Entidad{
+    private Long id;
     private String nombre;
     private List<Integer> idEstablecimientos;
 }
