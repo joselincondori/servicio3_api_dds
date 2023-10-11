@@ -14,6 +14,8 @@ mvn spring-boot:run
 ```
 O también se puede correr desde tu IDE.
 
+La aplicacion comenzara a correr en el puerto numero 8081.
+
 ## Documentación
 Una vez la aplicación este corriendo, visite el siguiente endpoint en su navegador: "/doc"
 
@@ -33,6 +35,7 @@ mvn spring-boot:run
 ```
 Or you can also run the application from your IDE.
 
+The application will start running on port number 8081.
 
 ## Documentation
 With the application running visit the following endpoint in your browser: "/doc"
