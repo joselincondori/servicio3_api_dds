@@ -10,7 +10,7 @@ RUN mvn package assembly:single -DskipTests
 # Package stage
 #
 FROM openjdk:17-jdk-slim
-COPY --from=build /target/ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar ejercicio.jar
+COPY --from=build /target/Servicio3_API-1.0-SNAPSHOT-jar-with-dependencies.jar Servicio3_API.jar
 # ENV PORT=8080
 EXPOSE 8081
-ENTRYPOINT ["java","-classpath","ejercicio.jar","com.servicio3.api.Servicio3ApiApplication"]
+ENTRYPOINT ["java","-classpath","Servicio3_API.jar","com.servicio3.api.Servicio3ApiApplication"]
