@@ -10,8 +10,7 @@ RUN mvn package assembly:single -DskipTests
 # Package stage
 #
 FROM openjdk:17-jdk-slim
-COPY Servicio3_API-0.0.1-SNAPSHOT-jar-with-dependencies.jar Servicio3_API.jar
-
+COPY --from=build /target/Servicio3_API-0.0.1-SNAPSHOT-jar-with-dependencies.jar Servicio3_API.jar
 # ENV PORT=8080
 EXPOSE 8081
 ENTRYPOINT ["java","-classpath","Servicio3_API.jar","com.servicio3.api.Servicio3ApiApplication"]
