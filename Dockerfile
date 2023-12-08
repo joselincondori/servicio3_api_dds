@@ -10,6 +10,5 @@ RUN mvn spring-boot:repackage -DskipTests
 FROM openjdk:17-jdk-slim
 COPY --from=build /app/target/Servicio3_API-0.0.1-SNAPSHOT.jar Servicio3_API.jar
 EXPOSE 8081
-ENTRYPOINT ["java", "-jar", "Servicio3_API.jar"]
 ENTRYPOINT ["java","-classpath","Servicio3_API.jar","com.servicio3.api.Servicio3ApiApplication"]
 
